@@ -19,6 +19,11 @@ defmodule VelocitasIdentity.Router do
     get "/", PageController, :index
   end
 
+  scope "/auth", VelocitasIdentity do
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callbac
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", VelocitasIdentity do
   #   pipe_through :api

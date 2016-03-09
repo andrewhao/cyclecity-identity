@@ -1,3 +1,7 @@
+IO.puts "hello"
+IO.puts System.get_env("FACEBOOK_CLIENT_ID")
+IO.puts System.get_env("CLICOLOR")
+
 use Mix.Config
 
 # For development, we disable any cache and enable
