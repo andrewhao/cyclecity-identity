@@ -5,6 +5,12 @@
 # is restricted to this project.
 use Mix.Config
 
+IO.puts System.get_env("PATH")
+IO.puts System.get_env("DATABASE_URL")
+IO.puts System.get_env("PORT")
+IO.puts System.get_env("FACEBOOK_CLIENT_ID")
+IO.puts System.get_env("FACEBOOK_CLIENT_SECRET")
+
 # Configures the endpoint
 config :velocitas_identity, VelocitasIdentity.Endpoint,
   url: [host: "localhost"],
