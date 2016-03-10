@@ -1,7 +1,3 @@
-IO.puts "hello"
-IO.puts System.get_env("FACEBOOK_CLIENT_ID")
-IO.puts System.get_env("CLICOLOR")
-
 use Mix.Config
 
 # For development, we disable any cache and enable
@@ -41,6 +37,7 @@ config :velocitas_identity, VelocitasIdentity.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
+  port: System.get_env("POSTGRES_PORT") || 5432,
   database: "velocitas_identity_dev",
   hostname: "localhost",
   pool_size: 10

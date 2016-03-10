@@ -21,8 +21,9 @@ defmodule VelocitasIdentity.Router do
   end
 
   scope "/auth", VelocitasIdentity do
+    pipe_through :browser
     get "/:provider", AuthController, :request
-    get "/:provider/callback", AuthController, :callbac
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.

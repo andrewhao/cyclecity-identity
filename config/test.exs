@@ -16,4 +16,5 @@ config :velocitas_identity, VelocitasIdentity.Repo,
   password: "postgres",
   database: "velocitas_identity_test",
   hostname: "localhost",
+  port: System.get_env("POSTGRES_PORT") || 5432,
   pool: Ecto.Adapters.SQL.Sandbox
