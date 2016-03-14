@@ -37,6 +37,16 @@ config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
 
+# Auth framework.
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "VelocitasIdentity",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: System.get_env("SECRET_KEY_BASE"),
+  serializer: VelocitasIdentity.GuardianSerializer
+
 # Configure phoenix generators
 config :phoenix, :generators,
   migration: true,
