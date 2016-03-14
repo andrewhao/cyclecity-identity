@@ -15,7 +15,7 @@ IO.puts System.get_env("FACEBOOK_CLIENT_SECRET")
 config :velocitas_identity, VelocitasIdentity.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "nuvWrnucS7XTJu4RVbj7/G3Y+N2ElOUMUKkMydG4Dc0hXN1Clxw7DvtlUARbaHfV",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: VelocitasIdentity.PubSub,
            adapter: Phoenix.PubSub.PG2]
