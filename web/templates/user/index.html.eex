@@ -6,7 +6,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Strava access token</th>
-      <th>Strava athelete</th>
+      <th>Strava athlete</th>
 
       <th></th>
     </tr>
@@ -17,7 +17,7 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.strava_access_token %></td>
-      <td><%= user.strava_athelete_id %></td>
+      <td><%= user.strava_athlete_id %></td>
 
       <td class="text-right">
         <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>

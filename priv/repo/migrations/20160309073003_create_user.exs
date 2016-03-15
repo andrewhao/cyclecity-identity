@@ -6,7 +6,7 @@ defmodule VelocitasIdentity.Repo.Migrations.CreateUser do
       add :name, :string
       add :email, :string
       add :strava_access_token, :string
-      add :strava_athelete_id, :integer
+      add :strava_athlete_id, :integer
 
       timestamps
     end

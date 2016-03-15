@@ -24,9 +24,9 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :strava_athelete_id, class: "control-label" %>
-    <%= number_input f, :strava_athelete_id, class: "form-control" %>
-    <%= error_tag f, :strava_athelete_id %>
+    <%= label f, :strava_athlete_id, class: "control-label" %>
+    <%= number_input f, :strava_athlete_id, class: "form-control" %>
+    <%= error_tag f, :strava_athlete_id %>
   </div>
 
   <div class="form-group">

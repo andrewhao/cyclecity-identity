@@ -18,8 +18,8 @@
   </li>
 
   <li>
-    <strong>Strava athelete:</strong>
-    <%= @user.strava_athelete_id %>
+    <strong>Strava athlete:</strong>
+    <%= @user.strava_athlete_id %>
   </li>
 
 </ul>

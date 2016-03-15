@@ -5,13 +5,15 @@ defmodule VelocitasIdentity.User do
     field :name, :string
     field :email, :string
     field :strava_access_token, :string
-    field :strava_athelete_id, :integer
+    field :strava_athlete_id, :integer
+    field :facebook_access_token, :string
+    field :facebook_user_id, :string
 
     timestamps
   end
 
-  @required_fields ~w(name email strava_access_token strava_athelete_id)
-  @optional_fields ~w()
+  @required_fields ~w(name email)
+  @optional_fields ~w(strava_access_token strava_athlete_id facebook_user_id facebook_access_token)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
