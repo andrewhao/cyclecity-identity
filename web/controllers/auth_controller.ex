@@ -21,7 +21,7 @@ defmodule VelocitasIdentity.AuthController do
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     Apex.ap(auth)
-    case UserFromAuth.find_or_create(auth) do
+    case UserFromAuth.find_or_create(auth, Repo) do
       {:ok, user} ->
         IO.puts("user is:")
         Apex.ap(user)
