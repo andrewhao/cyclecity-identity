@@ -1,11 +1,13 @@
+
 defmodule VelocitasIdentity.GuardianSerializer do
   @behaviour Guardian.Serializer
 
   alias VelocitasIdentity.Repo
   alias VelocitasIdentity.User
+  import Apex.AwesomeDef
 
-  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  adef for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
+  adef for_token(_), do: { :error, "Unknown resource type" }
 
   def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
   def from_token(_), do: { :error, "Unknown resource type" }

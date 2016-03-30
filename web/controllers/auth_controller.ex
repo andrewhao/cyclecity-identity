@@ -28,6 +28,7 @@ defmodule VelocitasIdentity.AuthController do
         conn
         |> put_flash(:info, "Successfully authenticated.")
         |> put_session(:current_user, user)
+        |> Guardian.Plug.sign_in(user)
         |> redirect(to: "/")
       {:error, reason} ->
         conn

@@ -64,4 +64,6 @@ defmodule VelocitasIdentity.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
   end
+
+  plug Guardian.Plug.EnsureAuthenticated, handler: VelocitasIdentity.AuthErrorHandler
 end

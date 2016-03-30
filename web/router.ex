@@ -1,6 +1,11 @@
 defmodule VelocitasIdentity.Router do
   use VelocitasIdentity.Web, :router
 
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -14,7 +19,7 @@ defmodule VelocitasIdentity.Router do
   end
 
   scope "/", VelocitasIdentity do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_auth]
 
     get "/", PageController, :index
     resources "/users", UserController
