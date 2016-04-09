@@ -1,7 +1,14 @@
 <div class="jumbotron">
   <h2><%= gettext "Welcome to %{name}", name: "Cyclecity!" %></h2>
+<%= if logged_in?(@conn) do %>
+  <p class="lead">
+    You are logged in, <%= username(@conn) %>!
+  </p>
+<% else %>
   <p class="lead">
     <a class="btn btn-default" href="/auth/facebook">Sign in with Facebook</a>
     <a class="btn btn-warning" href="/auth/strava">Sign in with Strava</a>
   </p>
+<% end %>
+
 </div>

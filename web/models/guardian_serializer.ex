@@ -1,4 +1,3 @@
-
 defmodule VelocitasIdentity.GuardianSerializer do
   @behaviour Guardian.Serializer
 
