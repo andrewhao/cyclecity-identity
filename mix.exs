@@ -46,6 +46,8 @@ defmodule VelocitasIdentity.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
+     {:apex, "~>0.4"},
+     {:guardian, "~> 0.10.0"},
      {:ueberauth, "~> 0.2"},
      {:ueberauth_facebook, "~> 0.3"}]
   end

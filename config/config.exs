@@ -15,7 +15,7 @@ IO.puts System.get_env("FACEBOOK_CLIENT_SECRET")
 config :velocitas_identity, VelocitasIdentity.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "nuvWrnucS7XTJu4RVbj7/G3Y+N2ElOUMUKkMydG4Dc0hXN1Clxw7DvtlUARbaHfV",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: VelocitasIdentity.PubSub,
            adapter: Phoenix.PubSub.PG2]
@@ -36,6 +36,16 @@ config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+# Auth framework.
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "VelocitasIdentity",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: System.get_env("SECRET_KEY_BASE"),
+  serializer: VelocitasIdentity.GuardianSerializer
 
 # Configure phoenix generators
 config :phoenix, :generators,
