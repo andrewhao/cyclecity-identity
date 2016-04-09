@@ -1,9 +1,12 @@
 <div class="jumbotron">
   <h2><%= gettext "Welcome to %{name}", name: "Cyclecity!" %></h2>
-<%= if logged_in?(@conn) do %>
+<%= if @current_user do %>
   <p class="lead">
-    You are logged in, <%= username(@conn) %>!
+    You are logged in, <%= @current_user.name %>!
   </p>
+  <%= form_for @conn, "/auth/logout", [as: :logout, method: :post], fn f -> %>
+    <button type="submit" class="btn btn-default">Log out</a>
+  <% end %>
 <% else %>
   <p class="lead">
     <a class="btn btn-default" href="/auth/facebook">Sign in with Facebook</a>

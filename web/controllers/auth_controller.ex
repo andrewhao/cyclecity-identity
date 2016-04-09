@@ -6,6 +6,14 @@ defmodule VelocitasIdentity.AuthController do
     render(conn, "request.html", callback_url: Helpers.callback_url(conn))
   end
 
+  def logout(conn, _params) do
+    Apex.ap(_params)
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Signed out.")
+    |> redirect(to: "/")
+  end
+
   def delete(conn, _params) do
     conn
     |> put_flash(:info, "You have been logged out!")

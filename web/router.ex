@@ -27,6 +27,7 @@ defmodule VelocitasIdentity.Router do
 
   scope "/auth", VelocitasIdentity do
     pipe_through :browser
+    post "/logout", AuthController, :logout
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
   end
