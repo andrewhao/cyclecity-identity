@@ -10,6 +10,8 @@ IO.puts System.get_env("DATABASE_URL")
 IO.puts System.get_env("PORT")
 IO.puts System.get_env("FACEBOOK_CLIENT_ID")
 IO.puts System.get_env("FACEBOOK_CLIENT_SECRET")
+IO.puts System.get_env("STRAVA_CLIENT_ID")
+IO.puts System.get_env("STRAVA_CLIENT_SECRET")
 
 # Configures the endpoint
 config :velocitas_identity, VelocitasIdentity.Endpoint,
@@ -27,8 +29,13 @@ config :logger, :console,
 
 config :ueberauth, Ueberauth,
   providers: [
-    facebook: {Ueberauth.Strategy.Facebook, []}
+    facebook: {Ueberauth.Strategy.Facebook, []},
+    strava: {Ueberauth.Strategy.Strava, []}
   ]
+
+config :ueberauth, Ueberauth.Strategy.Strava.OAuth,
+  client_id: System.get_env("STRAVA_CLIENT_ID"),
+  client_secret: System.get_env("STRAVA_CLIENT_SECRET")
 
 config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
   client_id: System.get_env("FACEBOOK_CLIENT_ID"),
