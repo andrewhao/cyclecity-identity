@@ -30,7 +30,9 @@ config :logger, :console,
 config :ueberauth, Ueberauth,
   providers: [
     facebook: {Ueberauth.Strategy.Facebook, []},
-    strava: {Ueberauth.Strategy.Strava, []}
+    strava: {Ueberauth.Strategy.Strava, [
+      default_scope: "view_private,write"
+    ]}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Strava.OAuth,

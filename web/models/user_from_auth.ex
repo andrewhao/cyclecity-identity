@@ -7,7 +7,7 @@ defmodule UserFromAuth do
   alias Ueberauth.Auth
 
   def find_or_create(%Auth{} = auth, repo) do
-    case find_user(auth, repo) do
+    case find_user(auth, repo, auth.provider) do
       {:error, :not_found} ->
         {:ok, create_user_from(auth, repo)}
       user ->
@@ -16,14 +16,24 @@ defmodule UserFromAuth do
   end
 
   defp create_user_from(auth, repo) do
-    %{id: facebook_user_id, name: name} = basic_info(auth)
+    %{id: user_id, name: name} = basic_info(auth)
     %{token: token} = credentials(auth)
+    user = case auth.provider do
+      :facebook ->
+        %User{
+          name: name,
+          facebook_user_id: user_id,
+          facebook_access_token: token
+        }
+      :strava ->
+        %User{
+          name: name,
+          strava_athlete_id: user_id,
+          strava_access_token: token
+        }
+    end
     repo.transaction fn ->
-      case repo.insert(%User{
-        name: name,
-        facebook_user_id: facebook_user_id,
-        facebook_access_token: token
-      }) do
+      case repo.insert(user) do
         {:ok, user} -> user
         {:error, reason} -> reason
       end
@@ -33,18 +43,26 @@ defmodule UserFromAuth do
   defp update_user(auth, user, repo) do
     %{token: token} = credentials(auth)
     %{name: name} = basic_info(auth)
-    Apex.ap(token)
-    changeset = User.changeset(user, %{name: name, facebook_access_token: token})
-    Apex.ap(changeset)
+    attrs = case auth.provider do
+      :facebook ->
+        %{name: name, facebook_access_token: token}
+      :strava ->
+        %{name: name, strava_access_token: token}
+    end
+    changeset = User.changeset(user, attrs)
     case repo.update(changeset) do
       {:ok, user} -> user
       {:error, changeset} -> changeset
     end
   end
 
-  defp find_user(auth, repo) do
-    %{id: fb_user_id} = basic_info(auth)
-    case repo.get_by(User, facebook_user_id: fb_user_id) do
+  defp find_user(auth, repo, provider) do
+    %{id: user_id} = basic_info(auth)
+    attrs = case provider do
+      :facebook -> [facebook_user_id: user_id]
+      :strava -> [strava_athlete_id: user_id]
+    end
+    case repo.get_by(User, attrs) do
       nil -> {:error, :not_found}
       user -> user
     end
