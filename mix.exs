@@ -49,6 +49,7 @@ defmodule VelocitasIdentity.Mixfile do
      {:apex, "~>0.4"},
      {:guardian, "~> 0.10.0"},
      {:ueberauth, "~> 0.2"},
+     {:ueberauth_strava, "~> 0.1"},
      {:ueberauth_facebook, "~> 0.3"}]
   end
 
