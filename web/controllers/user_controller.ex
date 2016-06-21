@@ -65,5 +65,5 @@ defmodule VelocitasIdentity.UserController do
     |> redirect(to: user_path(conn, :index))
   end
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: VelocitasIdentity.AuthErrorHandler
+  # plug Guardian.Plug.EnsureAuthenticated, handler: VelocitasIdentity.AuthErrorHandler
 end

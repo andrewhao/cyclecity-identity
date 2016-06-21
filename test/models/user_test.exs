@@ -4,7 +4,7 @@ defmodule VelocitasIdentity.UserTest do
   alias VelocitasIdentity.User
 
   @valid_attrs %{email: "some content", name: "some content", strava_access_token: "some content", strava_athlete_id: 42}
-  @invalid_attrs %{}
+  @invalid_attrs %{name: 1234}
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)

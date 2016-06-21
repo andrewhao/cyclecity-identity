@@ -1,4 +1,4 @@
-defmodule UserFromAuth do
+defmodule VelocitasIdentity.UserFromAuth do
   @moduledoc """
   Retrieve the user information from an auth request
   """
@@ -16,7 +16,7 @@ defmodule UserFromAuth do
   end
 
   defp create_user_from(auth, repo) do
-    %{id: user_id, name: name} = basic_info(auth)
+    %{id: user_id, email: email, name: name} = basic_info(auth)
     %{token: token} = credentials(auth)
     user = case auth.provider do
       :facebook ->
@@ -28,26 +28,28 @@ defmodule UserFromAuth do
       :strava ->
         %User{
           name: name,
+          email: email,
           strava_athlete_id: user_id,
           strava_access_token: token
         }
     end
-    repo.transaction fn ->
+    {:ok, user} = repo.transaction fn ->
       case repo.insert(user) do
         {:ok, user} -> user
         {:error, reason} -> reason
       end
     end
+    user
   end
 
   defp update_user(auth, user, repo) do
     %{token: token} = credentials(auth)
-    %{name: name} = basic_info(auth)
+    %{name: name, email: email} = basic_info(auth)
     attrs = case auth.provider do
       :facebook ->
         %{name: name, facebook_access_token: token}
       :strava ->
-        %{name: name, strava_access_token: token}
+        %{name: name, strava_access_token: token, email: email, strava_access_token: token}
     end
     changeset = User.changeset(user, attrs)
     case repo.update(changeset) do
@@ -69,7 +71,7 @@ defmodule UserFromAuth do
   end
 
   defp basic_info(auth) do
-    %{id: auth.uid, name: name_from_auth(auth), avatar: auth.info.image}
+    %{id: auth.uid, name: name_from_auth(auth), avatar: auth.info.image, email: auth.info.email}
   end
 
   defp credentials(auth) do
