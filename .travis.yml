@@ -1,0 +1,12 @@
+language: elixir
+elixir:
+- 1.2.2
+otp_release:
+- 18.2.1
+deploy:
+  provider: heroku
+  api_key:
+    secure: ahKzlBypusJDITud8+njqaJBSCsoHIotZ0enU1x+TQkWuw/ghJm9NcVMUbK6rB3BKa4uLKCzYXczRxazryjtqxikRPkscngkIp9CIb0ldoTKpyXqPq8xh9fA/jCFCiBcZxCbG0ehfudxZ8JalXnh6iZkd7EJPguxhtUz72McF2AJRwL8oR4hehBW9n3N+c4adVgvb9IHd9ppG9OEFgi/3vHlLxZyWV9cOmVs48jtpH9eN9sKttQrTzGaiLuG3hE9frc1ZOJoXOI+CmdbS9YNzSuWDlWMH0knBmQJrDy0pDLLyxiAXchpZ1SqeZ9CdwotcRaJZTREVvCh7CVk6AwInk5qRcoqi97nbKQpGD7qM0QNaxTHnUrzq8z/zEhMWjlmyEbfPnqLEIDgOx7OHH0SIS/bcxdA2UW7beNltGi7+lyc7iR9SU8kZiRdiDKvoB9GGmtOKQdSveeCbszEPtc5Ezo1BRG6FTbc1WHb7vv52xp4KHhKEaM9zIbTvdvTVR6GlOWqGKNip1XTg4fJL7OAAD9btP1i2Y1N+qAH4OYRHxCKao+RH2HzwZFepZ62mlYivVHbaBfQ8bjSAS7SqNKrioIKyK5rubtjLxOIBJRm8bsVOgasKqcQMUyyJ48wl/GUtbQCsmlPq0Hk6vIR3yvDz7NHcEZrAQ3K+ol1iKxaQvY=
+  app: cyclecity-identity
+  on:
+    repo: andrewhao/cyclecity-identity
