@@ -7,7 +7,6 @@ defmodule VelocitasIdentity.AuthController do
   end
 
   def logout(conn, _params) do
-    Apex.ap(_params)
     conn
     |> Guardian.Plug.sign_out
     |> put_flash(:info, "Signed out.")
@@ -28,11 +27,9 @@ defmodule VelocitasIdentity.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    Apex.ap(auth)
-    case UserFromAuth.find_or_create(auth, Repo) do
+    case VelocitasIdentity.UserFromAuth.find_or_create(auth, Repo) do
       {:ok, user} ->
         IO.puts("user is:")
-        Apex.ap(user)
         conn
         |> put_flash(:info, "Successfully authenticated.")
         |> put_session(:current_user, user)

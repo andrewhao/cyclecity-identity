@@ -19,10 +19,19 @@ defmodule VelocitasIdentity.Router do
   end
 
   scope "/", VelocitasIdentity do
+    pipe_through [:api]
+  end
+
+  scope "/", VelocitasIdentity do
+    pipe_through [:browser]
+
+    resources "/users", UserController
+  end
+
+  scope "/", VelocitasIdentity do
     pipe_through [:browser, :browser_auth]
 
     get "/", PageController, :index
-    resources "/users", UserController
   end
 
   scope "/auth", VelocitasIdentity do

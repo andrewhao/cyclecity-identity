@@ -12,8 +12,8 @@ defmodule VelocitasIdentity.User do
     timestamps
   end
 
-  @required_fields ~w()
-  @optional_fields ~w(name email strava_access_token strava_athlete_id facebook_user_id facebook_access_token)
+  @required_fields ~w(name email)
+  @optional_fields ~w(strava_access_token strava_athlete_id facebook_user_id facebook_access_token)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

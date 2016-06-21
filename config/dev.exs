@@ -37,7 +37,7 @@ config :velocitas_identity, VelocitasIdentity.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  port: System.get_env("POSTGRES_PORT") || 5432,
+  port: System.get_env("PGPORT") || 5432,
   database: "velocitas_identity_dev",
   hostname: "localhost",
   pool_size: 10
