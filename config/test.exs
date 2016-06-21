@@ -4,7 +4,8 @@ use Mix.Config
 # you can enable the server option below.
 config :velocitas_identity, VelocitasIdentity.Endpoint,
   http: [port: 4001],
-  server: false
+  server: false,
+  secret_key_base: 'testsecret'
 
 # Print only warnings and errors during test
 config :logger, level: :warn
@@ -16,5 +17,5 @@ config :velocitas_identity, VelocitasIdentity.Repo,
   password: "postgres",
   database: "velocitas_identity_test",
   hostname: "localhost",
-  port: System.get_env("POSTGRES_PORT") || 5432,
+  port: System.get_env("PGPORT") || 5432,
   pool: Ecto.Adapters.SQL.Sandbox
