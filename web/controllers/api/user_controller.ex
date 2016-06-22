@@ -16,13 +16,10 @@ defmodule VelocitasIdentity.Api.UserController do
     Apex.ap "Incoming auth"
     Apex.ap conn.req_headers
     real_token = "Bearer #{Application.get_env(:api_auth, :bearer_token)}"
-    Apex.ap "real token: #{real_token}"
     case conn.req_headers do
       [ { "authorization", token } ] ->
-        Apex.ap "token: #{token}"
         case token do
-          real_token ->
-            Apex.ap token
+          ^real_token ->
             conn
           _ -> conn |> send_resp(401, "Unauthorized") |> halt
         end
