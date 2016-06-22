@@ -19,10 +19,6 @@ defmodule VelocitasIdentity.Router do
   end
 
   scope "/", VelocitasIdentity do
-    pipe_through [:api]
-  end
-
-  scope "/", VelocitasIdentity do
     pipe_through [:browser]
 
     resources "/users", UserController
@@ -41,8 +37,9 @@ defmodule VelocitasIdentity.Router do
     get "/:provider/callback", AuthController, :callback
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", VelocitasIdentity do
-  #   pipe_through :api
-  # end
+  scope "/api", VelocitasIdentity, as: :api do
+    pipe_through :api
+
+    resources "/users", Api.UserController
+  end
 end
