@@ -15,7 +15,7 @@ defmodule VelocitasIdentity.Api.UserControllerTest do
   end
 
   test "returns list of users", %{ conn: conn } do
-    real_token = Application.get_env(:api_auth, :bearer_token)
+    real_token = Application.get_env(:velocitas_identity, :api_auth).bearer_token
     conn = conn |> put_req_header("authorization", "Bearer #{real_token}")
     email = "hello@example.com"
     name = "andrew"

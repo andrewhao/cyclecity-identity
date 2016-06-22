@@ -10,7 +10,9 @@ config :velocitas_identity, VelocitasIdentity.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-config :api_auth, bearer_token: 'test-token-123xyz'
+config :velocitas_identity, :api_auth, %{
+  bearer_token: 'test-token-123xyz'
+}
 
 # Configure your database
 config :velocitas_identity, VelocitasIdentity.Repo,
