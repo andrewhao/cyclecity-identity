@@ -25,5 +25,9 @@ erl_crash.dump
 # variables.
 /config/prod.secret.exs
 
+# Ignore travis build assets
+*.zip
+*.tar.bz2
+
 .env
 .ctags
