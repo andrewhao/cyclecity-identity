@@ -15,14 +15,14 @@ defmodule VelocitasIdentity.Api.UserController do
   defp authenticate_api_request(conn, _) do
     Apex.ap "Incoming auth"
     Apex.ap conn.req_headers
-    real_token = "Bearer #{Application.get_env(:api_auth, :bearer_token)}"
-    case conn.req_headers do
-      [ { "authorization", token } ] ->
-        case token do
-          ^real_token ->
-            conn
-          _ -> conn |> send_resp(401, "Unauthorized") |> halt
-        end
+    real_token = "Bearer #{Application.get_env(:velocitas_identity, :api_auth).bearer_token}"
+
+    auth_token_value = conn.req_headers
+    |> Enum.filter(fn(header_tuple) -> elem(header_tuple, 0) == "authorization" end)
+    |> Enum.map(fn(auth_header) -> elem(auth_header, 1) end)
+
+    case auth_token_value do
+      [^real_token] -> conn
       _ -> conn |> send_resp(401, "Unauthorized") |> halt
     end
   end
