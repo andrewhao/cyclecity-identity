@@ -30,6 +30,11 @@ defmodule VelocitasIdentity.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
 
+  Apex.ap "setting up cookie env"
+  Apex.ap Application.get_env(:velocitas_identity, :session_cookie_auth).domain
+  Apex.ap Application.get_env(:velocitas_identity, :session_cookie_auth).signing_salt
+  Apex.ap Application.get_env(:velocitas_identity, :session_cookie_auth).encryption_salt
+
   plug Plug.Session,
     store: PlugRailsCookieSessionStore,
     key: "_cyclecity_session",
