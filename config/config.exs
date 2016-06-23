@@ -12,6 +12,8 @@ IO.puts System.get_env("FACEBOOK_CLIENT_ID")
 IO.puts System.get_env("FACEBOOK_CLIENT_SECRET")
 IO.puts System.get_env("STRAVA_CLIENT_ID")
 IO.puts System.get_env("STRAVA_CLIENT_SECRET")
+IO.puts System.get_env("DOMAIN")
+IO.puts System.get_env("HOSTNAME")
 
 # Configures the endpoint
 config :velocitas_identity, VelocitasIdentity.Endpoint,
