@@ -47,6 +47,12 @@ config :velocitas_identity, :api_auth, %{
   bearer_token: System.get_env("API_BEARER_TOKEN")
 }
 
+config :velocitas_identity, :session_cookie_auth, %{
+  domain: System.get_env("DOMAIN"),
+  signing_salt: System.get_env("SESSION_ENCRYPTED_SIGNED_COOKIE_SALT"),
+  encryption_salt: System.get_env("SESSION_ENCRYPTED_COOKIE_SALT"),
+}
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

@@ -31,9 +31,17 @@ defmodule VelocitasIdentity.Endpoint do
   plug Plug.Head
 
   plug Plug.Session,
-    store: :cookie,
-    key: "_velocitas_identity_key",
-    signing_salt: "M8emDP0h"
+    store: PlugRailsCookieSessionStore,
+    key: "_cyclecity_session",
+    #secure: true,
+    encrypt: true,
+    domain: Application.get_env(:velocitas_identity, :session_cookie_auth).domain,
+    signing_salt: Application.get_env(:velocitas_identity, :session_cookie_auth).signing_salt,
+    encryption_salt: Application.get_env(:velocitas_identity, :session_cookie_auth).encryption_salt,
+    key_iterations: 1000,
+    key_length: 64,
+    key_digest: :sha,
+    serializer: Poison
 
   plug VelocitasIdentity.Router
 end

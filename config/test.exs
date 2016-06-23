@@ -14,6 +14,12 @@ config :velocitas_identity, :api_auth, %{
   bearer_token: 'test-token-123xyz'
 }
 
+config :velocitas_identity, :session_cookie_auth, %{
+  domain: "lvh.me",
+  signing_salt: "signing salt",
+  encryption_salt: "encryption salt"
+}
+
 # Configure your database
 config :velocitas_identity, VelocitasIdentity.Repo,
   adapter: Ecto.Adapters.Postgres,

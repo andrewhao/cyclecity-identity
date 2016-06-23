@@ -29,10 +29,9 @@ defmodule VelocitasIdentity.AuthController do
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case VelocitasIdentity.UserFromAuth.find_or_create(auth, Repo) do
       {:ok, user} ->
-        IO.puts("user is:")
         conn
         |> put_flash(:info, "Successfully authenticated.")
-        |> put_session(:current_user, user)
+        |> put_session(:current_user, %{user_id: user.id, name: user.name, strava_athlete_id: user.strava_athlete_id})
         |> Guardian.Plug.sign_in(user)
         |> redirect(to: "/")
       {:error, reason} ->

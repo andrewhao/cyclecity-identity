@@ -50,8 +50,11 @@ defmodule VelocitasIdentity.Mixfile do
      {:apex, "~>0.4"},
      {:guardian, "~> 0.10.0"},
      {:ueberauth, "~> 0.2"},
+     {:timex, "~> 2.1"},
      {:ueberauth_strava, "~> 0.1"},
-     {:ueberauth_facebook, "~> 0.3"}]
+     {:ueberauth_facebook, "~> 0.3"},
+     {:plug_rails_cookie_session_store, "~>0.1"}
+    ]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
