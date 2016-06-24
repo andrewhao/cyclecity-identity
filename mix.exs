@@ -53,7 +53,7 @@ defmodule VelocitasIdentity.Mixfile do
      {:timex, "~> 2.1"},
      {:ueberauth_strava, "~> 0.1"},
      {:ueberauth_facebook, "~> 0.3"},
-     {:plug_rails_cookie_session_store, "~>0.1"}
+     {:plug_rails_cookie_session_store, github: "andrewhao/plug_rails_cookie_session_store"}
     ]
   end
 

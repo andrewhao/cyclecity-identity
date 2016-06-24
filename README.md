@@ -1,4 +1,8 @@
-# VelocitasIdentity
+# Cyclecity Web
+
+Hosted web presence for the Cyclecity ecosystem. Includes identity management and frontend assets.
+
+[![Build Status](https://travis-ci.org/andrewhao/cyclecity-identity.svg?branch=master)](https://travis-ci.org/andrewhao/cyclecity-identity)
 
 To start your Phoenix app:
 
