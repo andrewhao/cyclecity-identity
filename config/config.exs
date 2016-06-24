@@ -50,6 +50,7 @@ config :velocitas_identity, :api_auth, %{
 }
 
 config :velocitas_identity, :session_cookie_auth, %{
+  secure: false,
   domain: System.get_env("DOMAIN"),
   signing_salt: System.get_env("SESSION_ENCRYPTED_SIGNED_COOKIE_SALT"),
   encryption_salt: System.get_env("SESSION_ENCRYPTED_COOKIE_SALT"),

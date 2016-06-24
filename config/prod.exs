@@ -27,6 +27,13 @@ config :velocitas_identity, VelocitasIdentity.Repo,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
 
+config :velocitas_identity, :session_cookie_auth, %{
+  secure: true,
+  domain: System.get_env("DOMAIN"),
+  signing_salt: System.get_env("SESSION_ENCRYPTED_SIGNED_COOKIE_SALT"),
+  encryption_salt: System.get_env("SESSION_ENCRYPTED_COOKIE_SALT")
+}
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

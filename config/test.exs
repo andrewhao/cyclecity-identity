@@ -17,7 +17,8 @@ config :velocitas_identity, :api_auth, %{
 config :velocitas_identity, :session_cookie_auth, %{
   domain: "lvh.me",
   signing_salt: "signing salt",
-  encryption_salt: "encryption salt"
+  encryption_salt: "encryption salt",
+  secure: false
 }
 
 # Configure your database

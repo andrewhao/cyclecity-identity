@@ -38,7 +38,7 @@ defmodule VelocitasIdentity.Endpoint do
   plug Plug.Session,
     store: PlugRailsCookieSessionStore,
     key: "_cyclecity_session",
-    secure: false,
+    secure: Application.get_env(:velocitas_identity, :session_cookie_auth).secure,
     encrypt: true,
     domain: ".#{Application.get_env(:velocitas_identity, :session_cookie_auth).domain}",
     signing_salt: Application.get_env(:velocitas_identity, :session_cookie_auth).signing_salt || "encrypted cookie",

@@ -26,7 +26,7 @@
   "phoenix_html": {:hex, :phoenix_html, "2.5.0", "44377a0470e8368ff7e6180dcafabeafe5112e920cf2a72e630416cb4b6b58c1", [:mix], [{:plug, "~> 0.13 or ~> 1.0", [hex: :plug, optional: false]}]},
   "phoenix_live_reload": {:hex, :phoenix_live_reload, "1.0.3", "262ed58c69174ae4f081725e03a072d0b48e6100248c0cbcd5df5e5fd4b212b6", [:mix], [{:phoenix, "~> 0.16 or ~> 1.0", [hex: :phoenix, optional: false]}, {:fs, "~> 0.9.1", [hex: :fs, optional: false]}]},
   "plug": {:hex, :plug, "1.1.6", "8927e4028433fcb859e000b9389ee9c37c80eb28378eeeea31b0273350bf668b", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, optional: true]}]},
-  "plug_rails_cookie_session_store": {:git, "https://github.com/andrewhao/plug_rails_cookie_session_store.git", "2296cec9d0b691b0ba5acc465d6c24d6b003a391", []},
+  "plug_rails_cookie_session_store": {:hex, :plug_rails_cookie_session_store, "0.1.0", "8d87967eb2d4d25837e1b5778265aebf8ac797291d6ff65dbd828c4ffa7f0955", [:mix], [{:plug, ">= 0.9.0", [hex: :plug, optional: false]}, {:cowboy, "~> 1.0", [hex: :cowboy, optional: true]}]},
   "poison": {:hex, :poison, "1.5.2", "560bdfb7449e3ddd23a096929fb9fc2122f709bcc758b2d5d5a5c7d0ea848910", [:mix], []},
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], []},
   "postgrex": {:hex, :postgrex, "0.11.0", "ffc900db99742a57f26da3e56c15a6f38bb419f0d627452da82036b6809b6042", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, optional: false]}, {:db_connection, "~> 0.2", [hex: :db_connection, optional: false]}, {:connection, "~> 1.0", [hex: :connection, optional: false]}]},
