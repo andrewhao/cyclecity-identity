@@ -22,7 +22,11 @@ config :velocitas_identity, VelocitasIdentity.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: VelocitasIdentity.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  cookie_secure: false,
+  cookie_domain: System.get_env("DOMAIN"),
+  cookie_signing_salt: System.get_env("SESSION_ENCRYPTED_SIGNED_COOKIE_SALT"),
+  cookie_encryption_salt: System.get_env("SESSION_ENCRYPTED_COOKIE_SALT")
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -47,13 +51,6 @@ config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
 
 config :velocitas_identity, :api_auth, %{
   bearer_token: System.get_env("API_BEARER_TOKEN")
-}
-
-config :velocitas_identity, :session_cookie_auth, %{
-  secure: false,
-  domain: System.get_env("DOMAIN"),
-  signing_salt: System.get_env("SESSION_ENCRYPTED_SIGNED_COOKIE_SALT"),
-  encryption_salt: System.get_env("SESSION_ENCRYPTED_COOKIE_SALT"),
 }
 
 # Import environment specific config. This must remain at the bottom

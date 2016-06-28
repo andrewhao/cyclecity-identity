@@ -31,7 +31,7 @@ defmodule VelocitasIdentity.AuthController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Successfully authenticated.")
-        |> put_session(:current_user, %{user_id: user.id, name: user.name, strava_athlete_id: user.strava_athlete_id})
+        |> put_session(:current_user, %{user_id: user.id, name: user.name, strava_athlete_id: user.strava_athlete_id, email: user.email})
         |> Guardian.Plug.sign_in(user)
         |> redirect(to: "/")
       {:error, reason} ->

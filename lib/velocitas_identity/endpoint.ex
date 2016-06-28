@@ -30,19 +30,14 @@ defmodule VelocitasIdentity.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
 
-  Apex.ap "setting up cookie env"
-  Apex.ap Application.get_env(:velocitas_identity, :session_cookie_auth).domain
-  Apex.ap Application.get_env(:velocitas_identity, :session_cookie_auth).signing_salt
-  Apex.ap Application.get_env(:velocitas_identity, :session_cookie_auth).encryption_salt
-
   plug Plug.Session,
     store: PlugRailsCookieSessionStore,
     key: "_cyclecity_session",
-    secure: Application.get_env(:velocitas_identity, :session_cookie_auth).secure,
+    secure: System.get_env("COOKIE_SECURE") == "true",
     encrypt: true,
-    domain: ".#{Application.get_env(:velocitas_identity, :session_cookie_auth).domain}",
-    signing_salt: Application.get_env(:velocitas_identity, :session_cookie_auth).signing_salt || "encrypted cookie",
-    encryption_salt: Application.get_env(:velocitas_identity, :session_cookie_auth).encryption_salt || "signed encrypted cookie",
+    domain: ".#{System.get_env("DOMAIN")}",
+    signing_salt: System.get_env("SESSION_ENCRYPTED_SIGNED_COOKIE_SALT"),
+    encryption_salt: System.get_env("SESSION_ENCRYPTED_COOKIE_SALT"),
     key_iterations: 1000,
     key_length: 64,
     key_digest: :sha,
