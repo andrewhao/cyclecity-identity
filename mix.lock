@@ -1,4 +1,4 @@
-%{"apex": {:hex, :apex, "0.4.0", "85048fd201a06d3427d5c607d22f080a52473d737343afd0c427f9bb64239af5", [:mix], []},
+%{"apex": {:hex, :apex, "0.7.0", "9d88f35310873ffd21f677cf9ec9512056e932a749efa544561de740737d3051", [:mix], []},
   "base64url": {:hex, :base64url, "0.0.1", "36a90125f5948e3afd7be97662a1504b934dd5dac78451ca6e9abf85a10286be", [:rebar], []},
   "certifi": {:hex, :certifi, "0.3.0", "389d4b126a47895fe96d65fcf8681f4d09eca1153dc2243ed6babad0aac1e763", [:rebar3], []},
   "combine": {:hex, :combine, "0.9.3", "192e609b48b3f2210494e26f85db1712657be1a8f15795656710317ea43fc449", [:mix], []},
